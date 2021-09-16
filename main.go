@@ -2,8 +2,13 @@ package main
 
 import (
 	"fmt"
+	"os"
 )
 
 func main() {
-	fmt.Println("I'm gonna do nice things soon")
+	if (len(os.Args) == 1 || len(os.Args) > 2) {
+		fmt.Println("usage: codeby \"full name\"")
+	} else {
+		fmt.Println(addedRemovedLoc(os.Args[1]))
+	}
 }
