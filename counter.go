@@ -10,7 +10,7 @@ func addedRemovedLoc(author string) string {
 	isFirst := true
 
 	for _, l := range languages {
-		checkLang := fmt.Sprintf("git log --author='%s' --pretty=tformat: --numstat | grep -v '^-' | grep .%s$", author, l.extension)
+		checkLang := fmt.Sprintf("git log --author='%s' --pretty=tformat: --numstat | grep -v '^-' | grep \\\\.%s$", author, l.extension)
 
 		_, checkLangErr := exec.Command("bash", "-c", checkLang).Output()
 
@@ -18,7 +18,7 @@ func addedRemovedLoc(author string) string {
 			continue
 		}
 
-		cmd := fmt.Sprintf("git log --author='%s' --pretty=tformat: --numstat | grep -v '^-' | grep .%s$ | awk '{ add+=$1; remove+=$2 } END { print \"--- %s ---\\nadded LOC:\", add, \"\\nremoved LOC:\", remove }'", author, l.extension, l.name)
+		cmd := fmt.Sprintf("git log --author='%s' --pretty=tformat: --numstat | grep -v '^-' | grep \\\\.%s$ | awk '{ add+=$1; remove+=$2 } END { print \"--- %s ---\\nadded LOC:\", add, \"\\nremoved LOC:\", remove }'", author, l.extension, l.name)
 
 		out, err := exec.Command("bash", "-c", cmd).Output()
 

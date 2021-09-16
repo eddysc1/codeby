@@ -24,4 +24,5 @@ var languages = Languages{
 	Language{name: "c++", extension: "cpp"},
 	Language{name: "rust", extension: "rs"},
 	Language{name: "scala", extension: "scala"},
+	Language{name: "twig", extension: "twig"},
 }
